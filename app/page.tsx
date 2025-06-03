@@ -20,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import MTTRMTBFCharts from "@/components/mttr-mtbf";
+import AllWo from "@/components/wo";
 
 export default function Home({
   className,
@@ -117,6 +118,7 @@ export default function Home({
       </div>
 
       <MTTRMTBFCharts selectedMachine={selectedMachine} />
+      <AllWo selectedMachine={selectedMachine} />
     </div>
   );
 }

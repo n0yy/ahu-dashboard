@@ -86,18 +86,37 @@ export async function getSheetData(
 
         await sheet.loadHeaderRow(1);
         const rows = await sheet.getRows();
+        let data: { [key: string]: any }[] = [];
 
-        const data = rows.map((row: GoogleSpreadsheetRow) => ({
-          date: row.get("Tanggal"),
-          month: row.get("Bulan"),
-          machine: row.get("Mesin"),
-          bdDuration: row.get("Durasi BD (menit)"),
-          bdFreq: row.get("Frekuensi BD"),
-          mttr: row.get("MTTR"),
-          mtbf: row.get("MTBF"),
-        }));
+        if (worksheetName === "SETIAP MESIN") {
+          data = rows.map((row: GoogleSpreadsheetRow) => ({
+            date: row.get("Tanggal"),
+            month: row.get("Bulan"),
+            machine: row.get("Mesin"),
+            bdDuration: row.get("Durasi BD (menit)"),
+            bdFreq: row.get("Frekuensi BD"),
+            mttr: row.get("MTTR"),
+            mtbf: row.get("MTBF"),
+          })) as { [key: string]: any }[];
+        }
 
-        return { title: doc.title, data };
+        if (worksheetName === "WO SELURUH") {
+          data = rows.map((row: GoogleSpreadsheetRow) => ({
+            date: row.get("Date"),
+            month: row.get("Month"),
+            description: row.get("Description"),
+            causeBreakdown: row.get("Cause Breakdown"),
+            machine: row.get("Machine"),
+            actualStart: row.get("Actual Start"),
+            complete: row.get("Complete"),
+            duration: row.get("Duration"),
+          }));
+        }
+
+        return {
+          title: worksheetName,
+          data,
+        };
       });
     });
 
@@ -106,8 +125,7 @@ export async function getSheetData(
       timestamp: Date.now(),
     });
 
-    console.log(result);
-    return result;
+    return result; // 🔥 Tambahkan ini
   } catch (error) {
     const errorMessage = (error as Error).message;
 
