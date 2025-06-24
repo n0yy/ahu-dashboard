@@ -29,23 +29,15 @@ export function AppSidebar() {
             <SidebarMenuButton className="text-lg">
               MTTR & MTBF
             </SidebarMenuButton>
-            <SidebarMenuSub>
-              <SidebarMenuSubItem>
-                <SidebarMenuSubButton>MTTR</SidebarMenuSubButton>
-              </SidebarMenuSubItem>
-              <SidebarMenuSubItem>
-                <SidebarMenuSubButton>MTBF</SidebarMenuSubButton>
-              </SidebarMenuSubItem>
-            </SidebarMenuSub>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton className="text-lg">Cost AHU</SidebarMenuButton>
             <SidebarMenuSub>
               <SidebarMenuSubItem>
-                <SidebarMenuSubButton>MTTR</SidebarMenuSubButton>
+                <SidebarMenuSubButton>Label 1</SidebarMenuSubButton>
               </SidebarMenuSubItem>
               <SidebarMenuSubItem>
-                <SidebarMenuSubButton>MTBF</SidebarMenuSubButton>
+                <SidebarMenuSubButton>Label 2</SidebarMenuSubButton>
               </SidebarMenuSubItem>
             </SidebarMenuSub>
           </SidebarMenuItem>
