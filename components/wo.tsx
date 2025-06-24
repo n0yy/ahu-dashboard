@@ -10,7 +10,6 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -57,7 +56,7 @@ export default function AllWo({
 
   const handleRowsPerPageChange = (value: string) => {
     setRowsPerPage(Number(value));
-    setCurrentPage(1); // reset ke halaman pertama
+    setCurrentPage(1);
   };
 
   return (
