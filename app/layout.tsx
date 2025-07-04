@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,16 @@ export default function RootLayout({
             <SidebarTrigger />
             {children}
             <footer className="text-center text-xs py-2 fixed bottom-0 left-0 w-full bg-white/30 backdrop-blur-md border-t border-white/40 shadow-lg">
-              © 2025 Built by <strong>@nangdosan</strong> — BTS Batch 3
+              © 2025 Built by{" "}
+              <strong>
+                <Link
+                  href="https://www.linkedin.com/in/danang-hapis-fadillah-682878202/"
+                  target="_blank"
+                >
+                  @nangdosan
+                </Link>
+              </strong>{" "}
+              — BTS Batch 3
             </footer>
           </main>
         </SidebarProvider>

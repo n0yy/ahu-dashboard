@@ -2,7 +2,11 @@
 
 import React from "react";
 import { addDays, format } from "date-fns";
-import { Calendar as CalendarIcon, ChevronDown } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  ChevronDown,
+  TimerReset,
+} from "lucide-react";
 import { DateRange } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -23,10 +27,7 @@ import MTTRMTBFCharts from "@/components/mttr-mtbf";
 import AllWo from "@/components/wo";
 
 export default function Home() {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2024, 0, 20),
-    to: addDays(new Date(2024, 0, 20), 20),
-  });
+  const [date, setDate] = React.useState<DateRange | undefined>(undefined);
 
   const [selectedMachine, setSelectedMachine] =
     React.useState<string>("SETIAP MESIN");
@@ -75,7 +76,7 @@ export default function Home() {
         </DropdownMenu>
 
         {/* Date Range Picker */}
-        <div className={cn("grid gap-2")}>
+        <div className="flex items-center gap-1">
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -86,7 +87,7 @@ export default function Home() {
                   !date && "text-muted-foreground"
                 )}
               >
-                <CalendarIcon />
+                <CalendarIcon className="mr-2 h-4 w-4" />
                 {date?.from ? (
                   date.to ? (
                     <>
@@ -112,11 +113,23 @@ export default function Home() {
               />
             </PopoverContent>
           </Popover>
+
+          {/* Reset Date Filter Button */}
+          {date?.from && date?.to && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setDate(undefined)}
+              className="h-6 w-6 p-2 hover:cursor-pointer text-red-700"
+            >
+              <TimerReset />
+            </Button>
+          )}
         </div>
       </div>
 
       <MTTRMTBFCharts selectedMachine={selectedMachine} />
-      <AllWo selectedMachine={selectedMachine} />
+      <AllWo selectedMachine={selectedMachine} dateRange={date} />
     </div>
   );
 }
